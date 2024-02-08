@@ -54,8 +54,9 @@ class CustomUnitEvent extends FutureEvent {
   void updateProgress(bool isIncrease) {
     final valueToAdd = isIncrease ? 1 : -1;
     final updatedAmount = amountAchieved.last.amount + valueToAdd;
-    final newRecord =
-        ProgressRecord(amount: updatedAmount, timestamp: DateTime.now());
+    final newRecord = ProgressRecord(
+        amount: updatedAmount < 0 ? 0 : updatedAmount,
+        timestamp: DateTime.now());
     amountAchieved.add(newRecord);
   }
 }

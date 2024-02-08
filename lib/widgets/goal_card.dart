@@ -22,7 +22,7 @@ class GoalCard extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(bottom: 20),
           width: 300,
-          height: 160,
+          height: 200,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               color: Colors.green.shade300,
@@ -36,7 +36,7 @@ class GoalCard extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(bottom: 20),
           width: 300,
-          height: 160,
+          height: 200,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               color: const Color.fromARGB(120, 0, 0, 0)),

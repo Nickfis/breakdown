@@ -31,6 +31,25 @@ class GoalList extends StatelessWidget {
         itemBuilder: (context, index) {
           return Center(
             child: InkWell(
+              onLongPress: () async {
+                final selectedValue = await showMenu(
+                    context: context,
+                    position: RelativeRect.fromLTRB(100.0, 200.0, 100.0,
+                        100.0), // You can adjust these values according to your needs
+                    items: [
+                      PopupMenuItem(
+                        value: 'delete',
+                        child: Text('Delete',
+                            style: TextStyle(color: Colors.white)),
+                      ),
+                      // Add more menu items if needed
+                    ],
+                    color: Colors.red.shade700);
+
+                if (selectedValue == 'delete') {
+                  removeEvent(futureEvents.getElementAtIndex(index));
+                }
+              },
               child: GoalCard(
                   event: futureEvents.getElementAtIndex(index),
                   updateCustomEventProgress: updateCustomEventProgress),

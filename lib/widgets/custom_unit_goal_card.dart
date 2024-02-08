@@ -14,20 +14,30 @@ class CustomUnitGoalCard extends StatelessWidget {
     int currentValue =
         event.amountAchieved[event.amountAchieved.length - 1].amount;
     int progress = currentValue - startingValue;
-    double progressPercentage =
+    double unboundedProgressPercentage =
         progress / (event.amountRequired - startingValue);
+    double progressPercentage = unboundedProgressPercentage < 0
+        ? 0
+        : unboundedProgressPercentage > 1
+            ? 1
+            : unboundedProgressPercentage;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       width: 300,
-      height: 160,
+      height: 200,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          Text(event.title, style: TextStyle(color: Colors.white)),
-          Text('Current value: $currentValue',
-              style: TextStyle(color: Colors.white)),
-          Text('Starting value: $startingValue',
+          Text(
+            event.title,
+            style: TextStyle(
+                color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
+          ),
+          Text(
+              'Currently at $currentValue ${event.unitName}${currentValue != 1 ? 's' : ''}',
               style: TextStyle(color: Colors.white)),
           ClipRRect(
             borderRadius: BorderRadius.circular(6),
@@ -36,6 +46,26 @@ class CustomUnitGoalCard extends StatelessWidget {
                 backgroundColor: Colors.grey.shade300,
                 valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
                 minHeight: 20),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                '$startingValue',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                '${event.amountRequired}',
+                style: TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
+          Center(
+            child: Text(
+              "Reached ${(progressPercentage * 100).round().toInt()}% of your goal!",
+              style: TextStyle(color: Colors.white),
+              textAlign: TextAlign.center,
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
