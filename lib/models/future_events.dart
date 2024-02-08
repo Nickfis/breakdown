@@ -37,4 +37,9 @@ class FutureEventsList {
     _events.remove(event);
     _saveEvents();
   }
+
+  void updateProgressOfCustomEvent(CustomUnitEvent event, bool isIncrease) {
+    event.updateProgress(isIncrease);
+    _saveEvents();
+  }
 }

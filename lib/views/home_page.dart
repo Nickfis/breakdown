@@ -7,7 +7,7 @@ import 'package:breakdown/models/future_event.dart';
 class MyHomePage extends StatefulWidget {
   final FutureEventsList futureEvents;
 
-  MyHomePage({Key? key, required this.futureEvents}) : super(key: key);
+  const MyHomePage({Key? key, required this.futureEvents}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -23,6 +23,12 @@ class _MyHomePageState extends State<MyHomePage> {
   void _deleteFutureEvent(FutureEvent event) {
     setState(() {
       widget.futureEvents.removeEvent(event);
+    });
+  }
+
+  void _updateProgress(CustomUnitEvent event, bool isIncrease) {
+    setState(() {
+      widget.futureEvents.updateProgressOfCustomEvent(event, isIncrease);
     });
   }
 
@@ -49,6 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Expanded(
                   child: GoalList(
                       futureEvents: widget.futureEvents,
+                      updateCustomEventProgress: _updateProgress,
                       removeEvent: _deleteFutureEvent),
                 ),
               ],

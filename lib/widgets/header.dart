@@ -12,12 +12,12 @@ class Header extends StatelessWidget {
     String formattedDate = dateFormat.format(DateTime.now());
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text('$formattedDate',
-              style: TextStyle(color: Colors.white, fontSize: 30)),
+          Text(formattedDate,
+              style: const TextStyle(color: Colors.white, fontSize: 30)),
           IconButton(
             iconSize: 36,
             onPressed: () {
@@ -26,7 +26,7 @@ class Header extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) => AddGoal(onAddEvent: onAddEvent)));
             },
-            icon: Icon(Icons.add_circle_outline, color: Colors.white),
+            icon: const Icon(Icons.add_circle_outline, color: Colors.white),
           )
         ],
       ),

@@ -36,7 +36,7 @@ class DateBasedGoalCard extends StatelessWidget {
           child: LinearProgressIndicator(
               value: progressPercentage,
               backgroundColor: Colors.grey.shade300,
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+              valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
               minHeight: 20),
         ),
         Text(

@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:hive/hive.dart';
 
 part 'future_event.g.dart';
@@ -51,6 +50,14 @@ class CustomUnitEvent extends FutureEvent {
           createdAt: createdAt,
           imagePath: imagePath, // Pass image to the super constructor
         );
+
+  void updateProgress(bool isIncrease) {
+    final valueToAdd = isIncrease ? 1 : -1;
+    final updatedAmount = amountAchieved.last.amount + valueToAdd;
+    final newRecord =
+        ProgressRecord(amount: updatedAmount, timestamp: DateTime.now());
+    amountAchieved.add(newRecord);
+  }
 }
 
 @HiveType(typeId: 2)

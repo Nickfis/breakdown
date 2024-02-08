@@ -1,14 +1,17 @@
 import 'dart:io';
 import 'package:breakdown/models/future_event.dart';
+import 'package:breakdown/widgets/custom_unit_goal_card.dart';
 import 'package:breakdown/widgets/date_based_goal_card.dart';
 import 'package:flutter/material.dart';
 
 class GoalCard extends StatelessWidget {
   final FutureEvent event;
+  final Function(CustomUnitEvent, bool) updateCustomEventProgress;
 
-  const GoalCard({
+  GoalCard({
     Key? key,
     required this.event,
+    required this.updateCustomEventProgress,
   }) : super(key: key);
 
   @override
@@ -39,7 +42,11 @@ class GoalCard extends StatelessWidget {
               color: const Color.fromARGB(120, 0, 0, 0)),
         ),
         // text container
-        DateBasedGoalCard(event: event)
+        event is CustomUnitEvent
+            ? CustomUnitGoalCard(
+                event: event as CustomUnitEvent,
+                updateCustomEventProgress: updateCustomEventProgress)
+            : DateBasedGoalCard(event: event)
       ],
     );
   }

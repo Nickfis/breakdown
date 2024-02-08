@@ -13,7 +13,6 @@ void main() async {
 
   final FutureEventsList futureEvents = FutureEventsList();
   await futureEvents.init(); // Initialize and load events
-  print(futureEvents.events);
   runApp(MyAppWithTransition(
       futureEvents: futureEvents)); // Pass the loaded events
 }
